@@ -1,0 +1,34 @@
+Qu'est-ce qu'un autoencodeur ?
+Un autoencodeur est un type de réseau neuronal utilisé principalement pour l'apprentissage non supervisé. Son objectif principal est de reconstruire une entrée à partir d'une version compressée (appelée "code latent"). Il est composé de deux parties principales :
+
+Encodeur : Cette partie prend l'entrée et la comprime en une représentation plus compacte (le vecteur latent). Cela réduit la dimensionnalité tout en essayant de conserver les informations essentielles.
+
+Décodeur : Cette partie prend la représentation compacte (vecteur latent) et tente de reconstruire l'entrée d'origine.
+
+L'architecture générale est en forme de "sablier", avec un goulot d'étranglement au centre (la couche latente), qui force le réseau à apprendre une représentation concise et utile.
+
+Pourquoi utiliser un autoencodeur ?
+Compression des données : Il peut être utilisé pour réduire la taille des données tout en préservant l'information.
+Dénoising (Réduction de bruit) : En introduisant du bruit dans les données d'entrée, l'autoencodeur peut apprendre à reconstruire une version propre des données. C'est ce qui est fait dans ce code.
+Pré-apprentissage de caractéristiques : Les autoencodeurs peuvent extraire des représentations utiles qui peuvent être utilisées dans d'autres tâches (comme la classification).
+Comment fonctionne ce code ?
+Encodeur :
+
+L'encodeur utilise des couches convolutives pour réduire progressivement la taille de l'image tout en augmentant le nombre de canaux.
+Cela compresse les informations de l'image dans une représentation latente (vecteur latent).
+Décodeur :
+
+Le décodeur utilise des couches transposées convolutives pour "remonter" vers l'espace d'entrée (reconstruire l'image).
+Il prend le vecteur latent produit par l'encodeur et essaie de générer une image qui correspond à l'original.
+Perte (Loss) :
+
+La perte est calculée comme l'erreur quadratique moyenne (MSE) entre l'image originale et l'image reconstruite.
+Cela force le modèle à apprendre une reconstruction précise.
+Dénoising :
+
+Pendant l'entraînement, un bruit est ajouté aux images d'entrée. Le réseau est formé pour reconstruire l'image originale sans bruit. Cela le rend utile pour des tâches de réduction de bruit.
+Visualisation des résultats :
+Les graphiques montrent :
+Les images d'entrée originales (ground truth).
+Les images bruitées utilisées comme entrée pour le réseau.
+Les images reconstruites par l'autoencodeur.
